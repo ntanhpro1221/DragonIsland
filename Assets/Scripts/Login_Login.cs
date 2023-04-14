@@ -13,6 +13,9 @@ using UnityEngine.SceneManagement;
 
 public class Login_Login : MonoBehaviour
 {
+    //Initialize
+    private List<AsyncOperation> TaskStack = new List<AsyncOperation>();//???????
+
     //Coming soon: sign in with account
     private async void Start()
     {
@@ -32,6 +35,22 @@ public class Login_Login : MonoBehaviour
         Screen.orientation = ScreenOrientation.LandscapeLeft;
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //those codes below are for developer mode anh will be removed in future
     [Command]
     async void server(int serverSize)
     {
@@ -60,7 +79,6 @@ public class Login_Login : MonoBehaviour
             print(e);
         }
     }
-
     [Command]
     async void client(string joinCode)
     {
