@@ -10,8 +10,8 @@ using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
+//using GooglePlayGames;
+//using GooglePlayGames.BasicApi;
 using UnityEngine.UI;
 
 public class Login_Login : MonoBehaviour
@@ -67,50 +67,50 @@ public class Login_Login : MonoBehaviour
     //}
 
 
-    private PlayGamesClientConfiguration clientConfiguration;
+    //private PlayGamesClientConfiguration clientConfiguration;
 
-    private void Start()
-    {
-        ConfigureGPGS();
-        SignIntoGPGS(SignInInteractivity.CanPromptOnce, clientConfiguration);
-    }
+    //private void Start()
+    //{
+    //    ConfigureGPGS();
+    //    SignIntoGPGS(SignInInteractivity.CanPromptOnce, clientConfiguration);
+    //}
 
-    public void ConfigureGPGS()
-    {
-        clientConfiguration = new PlayGamesClientConfiguration.Builder().Build();
-    }
+    //public void ConfigureGPGS()
+    //{
+    //    clientConfiguration = new PlayGamesClientConfiguration.Builder().Build();
+    //}
 
-    public void SignIntoGPGS(SignInInteractivity interactivity, PlayGamesClientConfiguration configuration)
-    {
-        PlayGamesPlatform.InitializeInstance(configuration);
-        PlayGamesPlatform.Activate();
-        PlayGamesPlatform.Instance.Authenticate(interactivity, code =>
-        {
-            Debug.Log("Authenticating...");
-            if (code == SignInStatus.Success)
-            {
-                Debug.Log("Successfully Authenticated");
-                Debug.Log("Hello" + Social.localUser.userName + " You have an ID of: " + Social.localUser.id);
-            }
-            else
-            {
-                Debug.LogError("Failed to authenticate due to: " + code);
-            }
-        });
+    //public void SignIntoGPGS(SignInInteractivity interactivity, PlayGamesClientConfiguration configuration)
+    //{
+    //    PlayGamesPlatform.InitializeInstance(configuration);
+    //    PlayGamesPlatform.Activate();
+    //    PlayGamesPlatform.Instance.Authenticate(interactivity, code =>
+    //    {
+    //        Debug.Log("Authenticating...");
+    //        if (code == SignInStatus.Success)
+    //        {
+    //            Debug.Log("Successfully Authenticated");
+    //            Debug.Log("Hello" + Social.localUser.userName + " You have an ID of: " + Social.localUser.id);
+    //        }
+    //        else
+    //        {
+    //            Debug.LogError("Failed to authenticate due to: " + code);
+    //        }
+    //    });
 
-    }
+    //}
 
-    [Command]
-    public void SignInBtn()
-    {
-        SignIntoGPGS(SignInInteractivity.CanPromptAlways, clientConfiguration);
-    }
+    //[Command]
+    //public void SignInBtn()
+    //{
+    //    SignIntoGPGS(SignInInteractivity.CanPromptAlways, clientConfiguration);
+    //}
 
-    [Command]
-    public void SignOutBtn()
-    {
-        PlayGamesPlatform.Instance.SignOut();
-    }
+    //[Command]
+    //public void SignOutBtn()
+    //{
+    //    PlayGamesPlatform.Instance.SignOut();
+    //}
 
 
 
