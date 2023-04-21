@@ -10,40 +10,107 @@ using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
+using UnityEngine.UI;
 
 public class Login_Login : MonoBehaviour
 {
-    //Initialize
-    private List<AsyncOperation> TaskStack = new List<AsyncOperation>();//???????
+    ////Initialize
+    //private List<AsyncOperation> TaskStack = new List<AsyncOperation>();//???????
 
-    //Coming soon: sign in with account
-    private async void Start()
+    //string IdToken;
+    //Text
+    ////Coming soon: sign in with account
+    //private void Start()
+    //{
+    //    UnityServices.InitializeAsync().ContinueWith(task =>
+    //    {
+    //        AuthenticationService.Instance.SignedIn += () =>
+    //        {
+    //            Debug.Log("Signed in with id: " + AuthenticationService.Instance.PlayerId);
+    //        };
+    //    });
+
+    //    var config = new PlayGamesClientConfiguration.Builder().RequestIdToken().Build();
+    //    PlayGamesPlatform.InitializeInstance(config);
+    //    PlayGamesPlatform.DebugLogEnabled = true;
+    //    PlayGamesPlatform.Activate();
+    //    Social.localUser.Authenticate(success =>
+    //    {
+    //        if (success)
+    //            Debug.Log("Login with google done. IdToken: " + ((PlayGamesLocalUser)Social.localUser).GetIdToken());
+    //        else
+    //            Debug.LogError("Login google is Unsuccessful");
+    //    });
+    //    IdToken = ((PlayGamesLocalUser)Social.localUser).GetIdToken();
+    //}
+
+    //[Command]
+    //async void SignInGoogle()
+    //{
+    //    try
+    //    {
+    //        await AuthenticationService.Instance.SignInWithGoogleAsync(IdToken);
+    //        Debug.Log("Sign in is successful");
+    //    }
+    //    catch (AuthenticationException e)
+    //    {
+    //        Debug.LogException(e);
+    //        Debug.LogError("Sign in is unsuccessful");
+    //    }
+    //    catch (RequestFailedException e)
+    //    {
+    //        Debug.LogException(e);
+    //        Debug.LogError("Sign in is unsuccessful");
+    //    }
+    //}
+
+
+    private PlayGamesClientConfiguration clientConfiguration;
+
+    private void Start()
     {
-        if (UnityServices.State == ServicesInitializationState.Uninitialized)
-        {
-            // Initialize to use its function
-            await UnityServices.InitializeAsync();
-            AuthenticationService.Instance.SignedIn += () =>
-            {
-                print("Signed in with id: " + AuthenticationService.Instance.PlayerId);
-            };
-            // Sign in Anonymously 
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        }
+        ConfigureGPGS();
+        SignIntoGPGS(SignInInteractivity.CanPromptOnce, clientConfiguration);
+    }
 
-        // set landscape mode to horizontal
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
+    public void ConfigureGPGS()
+    {
+        clientConfiguration = new PlayGamesClientConfiguration.Builder().Build();
+    }
+
+    public void SignIntoGPGS(SignInInteractivity interactivity, PlayGamesClientConfiguration configuration)
+    {
+        PlayGamesPlatform.InitializeInstance(configuration);
+        PlayGamesPlatform.Activate();
+        PlayGamesPlatform.Instance.Authenticate(interactivity, code =>
+        {
+            Debug.Log("Authenticating...");
+            if (code == SignInStatus.Success)
+            {
+                Debug.Log("Successfully Authenticated");
+                Debug.Log("Hello" + Social.localUser.userName + " You have an ID of: " + Social.localUser.id);
+            }
+            else
+            {
+                Debug.LogError("Failed to authenticate due to: " + code);
+            }
+        });
 
     }
 
+    [Command]
+    public void SignInBtn()
+    {
+        SignIntoGPGS(SignInInteractivity.CanPromptAlways, clientConfiguration);
+    }
 
-
-
-
-
-
-
-
+    [Command]
+    public void SignOutBtn()
+    {
+        PlayGamesPlatform.Instance.SignOut();
+    }
 
 
 
