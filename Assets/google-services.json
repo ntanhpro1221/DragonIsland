@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "503520547653",
+    "firebase_url": "https://dragon-island-dc3c1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "dragon-island-dc3c1",
+    "storage_bucket": "dragon-island-dc3c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503520547653:android:2a713053a07b992baaa42c",
+        "android_client_info": {
+          "package_name": "com.NGDtuanh.DragonIsland"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503520547653-mba53sdiecp76tnfhhkfresiqm4h3fg1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.NGDtuanh.DragonIsland",
+            "certificate_hash": "4476434a1ab5f1fca668a2095f5ba44518669ade"
+          }
+        },
+        {
+          "client_id": "503520547653-tj9fhj9aif1lmvji5olp0f89pu62hcch.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRgWTIwBpGxNLCRqlHYgADRi-1ofFAKnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503520547653-k884n3ma2njr8qg1tju1hmoaopvcjduc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
